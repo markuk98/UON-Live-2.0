@@ -1,0 +1,26 @@
+﻿@page "/approvelogins"
+@attribute [Authorize(Roles = "Admin")]
+
+<h1>Approve Logins</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Users)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@user.EmailConfirmed</td>
+                <td><button class="btn btn-primary" @onclick="() => Approve(user.Id)">Approve</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
